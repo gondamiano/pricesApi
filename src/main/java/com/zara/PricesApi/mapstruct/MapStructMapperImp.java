@@ -2,14 +2,15 @@ package com.zara.PricesApi.mapstruct;
 
 import com.zara.PricesApi.dto.PricesDto;
 import com.zara.PricesApi.entities.PricesEntity;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
+@Component
 public class MapStructMapperImp implements MapStructMapper {
 
     @Override
@@ -22,7 +23,7 @@ public class MapStructMapperImp implements MapStructMapper {
         pricesDto.setPriceListId(prices.getPriceListId());
         pricesDto.setProductId(prices.getProductId());
         pricesDto.setStartDate(prices.getStartDate().toString());
-        pricesDto.setEndDate(prices.getStartDate().toString());
+        pricesDto.setEndDate(prices.getEndDate().toString());
         return pricesDto;
     }
 

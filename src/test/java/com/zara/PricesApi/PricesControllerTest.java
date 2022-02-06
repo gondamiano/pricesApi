@@ -1,5 +1,6 @@
 package com.zara.PricesApi;
 
+import com.zara.PricesApi.dto.PricesDto;
 import com.zara.PricesApi.entities.PricesEntity;
 import com.zara.PricesApi.router.PricesController;
 import com.zara.PricesApi.services.PriceService;
@@ -34,7 +35,7 @@ public class PricesControllerTest {
     @Test
     void tryGet() {
         String startDate = "20-10-2019", brandId = "123", productId = "PROD23414";
-        when(priceService.getBy(startDate, brandId, productId)).thenReturn(new ArrayList<PricesEntity>());
+        when(priceService.getBy(startDate, brandId, productId)).thenReturn(new ArrayList<>());
         pricesController.get(startDate, brandId, productId);
     }
 }

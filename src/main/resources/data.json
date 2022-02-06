@@ -19,13 +19,13 @@
     "startDate":"2020-07-15T23:59:59"
   },{
   "amount":30.50,
-  "brandId":1,
+  "brandId":2,
   "currency": "EUR",
   "endDate":"2021-01-01T23:59:59",
   "priceListId":3,
   "priority":1,
   "productId":35455,
-  "startDate":"2021-02-01T23:59:59"
+  "startDate":"2020-02-01T23:59:59"
 },{
   "amount":38.95,
   "brandId":2,
