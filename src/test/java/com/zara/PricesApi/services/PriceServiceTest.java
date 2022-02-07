@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -90,6 +91,6 @@ public class PriceServiceTest {
     public void should_return_exception() throws Exception {
         //input
         InputMock input = MockInputParams.getNinePmOnDaySixteenInput();
-        PricesResponseDto pricesDto = priceService.getBy("2022-05-03T21:00:00", input.brandId, input.productId);
+        PricesResponseDto pricesDto = priceService.getBy(LocalDateTime.parse("2022-05-03T21:00:00"), input.brandId, input.productId);
     }
 }

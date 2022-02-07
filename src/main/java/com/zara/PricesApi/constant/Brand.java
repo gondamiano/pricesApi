@@ -18,10 +18,11 @@ public enum Brand {
         this.brandId = brandId;
     }
 
-    public static Brand getById(@NotNull String value) {
-        for (Brand brandId : Brand.values()) {
-            if (brandId.brandName.equals(value)) {
-                return brandId;
+    public static String getById(@NotNull String value) {
+            Integer val = Integer.parseInt(value);
+        for (Brand brand : Brand.values()) {
+            if (brand.brandId == val) {
+                return brand.brandName;
             }
         }
         return null;

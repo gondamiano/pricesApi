@@ -1,6 +1,7 @@
 package com.zara.PricesApi;
 
 import com.zara.PricesApi.dto.PricesResponseDto;
+import com.zara.PricesApi.exception.InvalidInputException;
 import com.zara.PricesApi.router.PricesController;
 import com.zara.PricesApi.services.PriceService;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,6 +18,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -44,21 +47,41 @@ public class PricesControllerTest {
     }
 
     @Test
-    void tryGet() throws Exception {
+    void try_get() throws Exception {
         InputMock input = MockInputParams.getNinePmOnDayFourteenInput();
         when(priceService.getBy(input.date, input.brandId, input.productId)).thenReturn(new PricesResponseDto());
-        pricesController.get(input.date, input.brandId, input.productId);
+        pricesController.get(input.date.toString(), input.brandId, input.productId);
     }
 
     @Test
-    void tryGetRequest() throws Exception {
+    void try_get_request() throws Exception {
         InputMock input = MockInputParams.getNinePmOnDayFourteenInput();
-        given(priceService.getBy(input.date, input.brandId, input.productId)).willReturn(PriceDtoMother.getPriceResponseDto(input.date, input.brandId, input.productId));
-        String endpoint = String.format("/prices?from=%s&brand=%s&product=%s", input.date, input.brandId, input.productId);
+        given(priceService.getBy(input.date, input.brandId, input.productId)).willReturn(PriceDtoMother.getPriceResponseDto(input.date.toString(), input.brandId, input.productId));
+        String endpoint = String.format("/prices?date=%s&brand=%s&product=%s", input.date, input.brandId, input.productId);
 
         MockHttpServletResponse response = mockMvc.perform(get(endpoint).accept(MediaType.APPLICATION_JSON)).andReturn().getResponse();
 
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
     }
 
+    @Test
+    void should_return_invalid_input_exception_by_date() {
+        InputMock input = MockInputParams.getNinePmOnDayFourteenInput();
+        InvalidInputException ex = assertThrows(InvalidInputException.class, () -> pricesController.get("2020-06-15", input.brandId, input.productId));
+        assertEquals(ex.getClass(),InvalidInputException.class);
+    }
+
+    @Test
+    void should_return_invalid_input_exception_by_brand_id() {
+        InputMock input = MockInputParams.getNinePmOnDayFourteenInput();
+        InvalidInputException ex = assertThrows(InvalidInputException.class, () -> pricesController.get(input.date.toString(), "B04", input.productId));
+        assertEquals(ex.getClass(),InvalidInputException.class);
+    }
+
+    @Test
+    void should_return_invalid_input_exception_by_product_id() {
+        InputMock input = MockInputParams.getNinePmOnDayFourteenInput();
+        InvalidInputException ex = assertThrows(InvalidInputException.class, () -> pricesController.get(input.date.toString(), input.brandId, "PROD35455"));
+        assertEquals(ex.getClass(),InvalidInputException.class);
+    }
 }
