@@ -28,7 +28,7 @@ can check all dependencies used inside pom.xml
 
     curl --location --request GET 'localhost:8080/prices?date=2020-06-15T10:00:00&brand=1&product=35455' \
 
-###Params
+### Params
 
 date:`String` (ISO_LOCAL_DATE_TIME) 
 example: `2020-04-01T20:00:00`
