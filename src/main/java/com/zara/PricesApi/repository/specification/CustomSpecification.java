@@ -11,18 +11,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class GenericSpecification implements Specification<PricesEntity> {
+public class CustomSpecification implements Specification<PricesEntity> {
 
     private SearchCriteria searchCriteria;
     private final List<SearchCriteria> params;
 
-    public GenericSpecification(final SearchCriteria searchCriteria) {
+    public CustomSpecification(final SearchCriteria searchCriteria) {
         super();
         this.searchCriteria = searchCriteria;
         this.params = new ArrayList<>();
     }
 
-    public GenericSpecification() {
+    public CustomSpecification() {
         super();
         this.params = new ArrayList<>();
     }
@@ -45,7 +45,7 @@ public class GenericSpecification implements Specification<PricesEntity> {
         return null;
     }
 
-    public GenericSpecification with(String key, SearchOperation operation, Object value) {
+    public CustomSpecification with(String key, SearchOperation operation, Object value) {
         params.add(new SearchCriteria(key, operation, value));
         return this;
     }
@@ -56,7 +56,7 @@ public class GenericSpecification implements Specification<PricesEntity> {
         }
 
         List<Specification> specs = params.stream()
-                .map(GenericSpecification::new)
+                .map(CustomSpecification::new)
                 .collect(Collectors.toList());
 
         Specification result = specs.get(0);

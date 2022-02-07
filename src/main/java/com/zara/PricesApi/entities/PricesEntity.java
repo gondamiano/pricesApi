@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @Table(name = "Prices")
 public class PricesEntity {
 
-
     private @Id @GeneratedValue Long id;
     @Column(name = "BRAND_ID")
     private Integer brandId;

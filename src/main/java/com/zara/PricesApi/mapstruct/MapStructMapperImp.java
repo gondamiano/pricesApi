@@ -1,6 +1,7 @@
 package com.zara.PricesApi.mapstruct;
 
 import com.zara.PricesApi.dto.PricesDto;
+import com.zara.PricesApi.dto.PricesResponseDto;
 import com.zara.PricesApi.entities.PricesEntity;
 import org.springframework.stereotype.Component;
 
@@ -47,6 +48,32 @@ public class MapStructMapperImp implements MapStructMapper {
 
     public List<PricesDto> pricesToPricesDto(List<PricesEntity> pricesEntityList) {
         return pricesEntityList.stream().map(this::pricesToPricesDto).collect(Collectors.toList());
+    }
+
+    public PricesResponseDto pricesDtoToPricesResponseDto(PricesDto pricesDto) {
+        PricesResponseDto pricesResponseDto = new PricesResponseDto();
+        pricesResponseDto.setAmount(pricesDto.getAmount());
+        pricesResponseDto.setCurrency(pricesDto.getCurrency());
+        pricesResponseDto.setBrandId(pricesDto.getBrandId());
+        pricesResponseDto.setPriority(pricesDto.getPriority());
+        pricesResponseDto.setPriceListId(pricesDto.getPriceListId());
+        pricesResponseDto.setProductId(pricesDto.getProductId());
+        pricesResponseDto.setStartDate(pricesDto.getStartDate());
+        pricesResponseDto.setEndDate(pricesDto.getEndDate());
+        return pricesResponseDto;
+    }
+
+    public PricesResponseDto pricesToPricesResponseDto(PricesEntity prices) {
+        PricesResponseDto pricesDto = new PricesResponseDto();
+        pricesDto.setAmount(prices.getAmount());
+        pricesDto.setCurrency(prices.getCurrency());
+        pricesDto.setBrandId(prices.getBrandId());
+        pricesDto.setPriority(prices.getPriority());
+        pricesDto.setPriceListId(prices.getPriceListId());
+        pricesDto.setProductId(prices.getProductId());
+        pricesDto.setStartDate(prices.getStartDate().toString());
+        pricesDto.setEndDate(prices.getEndDate().toString());
+        return pricesDto;
     }
 
     LocalDateTime convertStringToLocalDatetime(String date) {

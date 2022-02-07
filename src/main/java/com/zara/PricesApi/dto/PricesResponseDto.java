@@ -1,12 +1,13 @@
 package com.zara.PricesApi.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class PricesDto {
+public class PricesResponseDto {
 
     @JsonProperty("brandId")
     public Integer brandId;
@@ -18,15 +19,11 @@ public class PricesDto {
     private Integer priceListId;
     @JsonProperty("productId")
     private Integer productId;
-    @JsonProperty("priority")
+    @JsonIgnore()
     private Integer priority;
     @JsonProperty("amount")
     private Double amount;
     @JsonProperty("currency")
     private String currency;
 
-    @Override
-    public String toString() {
-        return String.format("brandId: %s  -  productId: %s  -  date: %s / %s  -   amount : %s %s", this.brandId, this.productId, this.startDate, this.endDate, this.currency, this.amount);
-    }
 }
