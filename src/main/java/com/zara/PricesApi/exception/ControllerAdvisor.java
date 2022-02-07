@@ -20,7 +20,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handlePriceNotFoundException(Exception e) {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());
-        body.put("message", "Price not found. Check API documentation: ");
+        body.put("message", "Price not found. Check API documentation: https://github.com/gondamiano/pricesApi");
         body.put("cause", e.getMessage());
 
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
@@ -30,7 +30,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleInvalidInputException(InvalidInputException ex) {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());
-        body.put("message", "Invalid Input. Check API documentation: ");
+        body.put("message", "Invalid Input. Check API documentation: https://github.com/gondamiano/pricesApi");
         body.put("cause", ex.getMessage());
 
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);

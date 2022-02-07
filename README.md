@@ -32,25 +32,25 @@ The REST API to the example app is described below.
 
 ###Params
 
-date:`LocalDateTime` (ISO_LOCAL_DATE_TIME) 
+date:`String` (ISO_LOCAL_DATE_TIME) 
 example: `2020-04-01T20:00:00`
 
-brand: `int` Brand ID
+brand: `Integer` Brand ID
 
-product: `int` Product ID
+product: `Integer` Product ID
 
 ### Response
 example:
 
     status: 200
     {
-    "brandId": 1,
-    "startDate": "2020-06-15T00:00:00",
-    "endDate": "2020-06-15T11:00:00",
-    "priceListId": 2,
-    "productId": 3,
-    "amount": 25.15,
-    "currency": "USD"
+        "brandId": 1,
+        "startDate": "2020-06-15T00:00:00",
+        "endDate": "2020-06-15T11:00:00",
+        "priceListId": 2,
+        "productId": 3,
+        "amount": 25.15,
+        "currency": "USD"
     }
 
 ## Exercise Requirements
