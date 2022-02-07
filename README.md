@@ -14,6 +14,10 @@ can check all dependencies used inside pom.xml
 
     mvn compile
 
+## Run app
+    
+    mvn spring-boot:run
+
 ## Run the tests
 
     mvn test
